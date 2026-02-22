@@ -1,4 +1,5 @@
 import BlogSection from "@/components/BlogSection";
+import ConnectSection from "@/components/ConnectSection";
 import HeroSection from "@/components/HeroSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import WorkExperienceSection from "@/components/WorkExperienceSection";
@@ -11,6 +12,7 @@ export default function Home() {
         <ProjectsSection />
         <WorkExperienceSection />
         <BlogSection />
+        <ConnectSection />
       </div>
     </main>
   );
