@@ -1,14 +1,15 @@
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white text-black">
-      <div className="max-w-3xl mx-auto px-6 py-24">
-        <h1 className="text-3xl font-semibold tracking-tight">
-          Rizki Bagus Ariyanto
-        </h1>
+    <main className="min-h-screen bg-white text-neutral-900">
+      <div className="max-w-3xl mx-auto px-6 pt-32 pb-24">
+        {/* Name */}
+        <h1 className="text-2xl font-medium">Julien Nim</h1>
 
-        <p className="mt-2 text-gray-600">Builder</p>
+        {/* Role */}
+        <p className="mt-1 text-neutral-500 text-lg">Design Engineer</p>
 
-        <p className="mt-6 text-gray-700 leading-relaxed">
+        {/* Description */}
+        <p className="mt-10 text-neutral-600 text-xl leading-relaxed">
           Focused on creating intuitive and performant web experiences. Bridging
           the gap between design and development.
         </p>
