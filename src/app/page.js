@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import ProjectsSection from "@/components/ProjectsSection";
+import WorkExperienceSection from "@/components/WorkExperienceSection";
 
 export default function Home() {
   return (
@@ -7,6 +8,7 @@ export default function Home() {
       <div className="max-w-3xl mx-auto px-6">
         <HeroSection />
         <ProjectsSection />
+        <WorkExperienceSection />
       </div>
     </main>
   );
