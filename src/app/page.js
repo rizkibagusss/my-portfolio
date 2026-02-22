@@ -1,3 +1,4 @@
+import BlogSection from "@/components/BlogSection";
 import HeroSection from "@/components/HeroSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import WorkExperienceSection from "@/components/WorkExperienceSection";
@@ -9,6 +10,7 @@ export default function Home() {
         <HeroSection />
         <ProjectsSection />
         <WorkExperienceSection />
+        <BlogSection />
       </div>
     </main>
   );
