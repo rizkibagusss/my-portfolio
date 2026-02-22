@@ -18,15 +18,15 @@ export default function ProjectsSection() {
       {/* Project Grid */}
       <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-10">
         {/* Project Card */}
-        <div>
-          <div className="aspect-4/3 bg-neutral-200 rounded-xl"></div>
+        <Link href="/projects/project-pertama-saya">
+          <div className="cursor-pointer">
+            <div className="aspect-4/3 bg-neutral-200 rounded-xl"></div>
 
-          <h3 className="mt-6 text-lg font-medium">Motion Primitives Pro</h3>
+            <h3 className="mt-6 text-lg font-medium">Project pertama saya</h3>
 
-          <p className="mt-2 text-neutral-600">
-            Advanced components and templates to craft beautiful websites.
-          </p>
-        </div>
+            <p className="mt-2 text-neutral-600">Lorem ipsum description.</p>
+          </div>
+        </Link>
 
         {/* Project Card */}
         <div>
