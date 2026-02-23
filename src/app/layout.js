@@ -17,10 +17,31 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const themeScript = `
+    (function() {
+      try {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else if (theme === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (prefersDark) {
+            document.documentElement.classList.add('dark');
+          }
+        }
+      } catch (_) {}
+    })();
+  `;
+
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body
-        className={`bg-white text-black ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`bg-white text-neutral-900 ${geistSans.variable} ${geistMono.variable} antialiased dark:bg-neutral-950 dark:text-neutral-100 transition-colors duration-300`}
       >
         {children}
       </body>
