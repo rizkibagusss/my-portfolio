@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import AdminPosts from "@/components/AdminPosts";
 
 export default function AdminPage() {
   const router = useRouter();
@@ -48,6 +49,11 @@ export default function AdminPage() {
         </div>
 
         <p className="mt-6 text-neutral-600">Welcome, {user.email}</p>
+        <div className="mt-12">
+          <h2 className="text-lg font-medium mb-6">Your Blog Posts</h2>
+
+          <AdminPosts />
+        </div>
       </div>
     </main>
   );
