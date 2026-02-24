@@ -26,7 +26,7 @@ export default async function BlogPage() {
           </Link>
         </div>
 
-        <div className="mt-12">
+        <div className="mt-10">
           {posts?.map((post) => (
             <Link
               key={post.id}
