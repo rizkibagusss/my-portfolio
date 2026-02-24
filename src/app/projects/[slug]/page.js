@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import Image from "next/image";
 import Link from "next/link";
 
 export default async function ProjectDetail({ params }) {
@@ -29,6 +30,17 @@ export default async function ProjectDetail({ params }) {
         </Link>
 
         <h1 className="mt-6 text-3xl font-medium">{project.title}</h1>
+
+        {project.image_url && (
+          <div className="mt-10 rounded-xl overflow-hidden relative h-125">
+            <Image
+              src={project.image_url}
+              alt={project.title}
+              fill
+              className="object-cover"
+            />
+          </div>
+        )}
 
         <p className="mt-4 text-neutral-600">{project.description}</p>
 

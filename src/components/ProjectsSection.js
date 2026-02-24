@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function ProjectsSection({ projects }) {
@@ -19,7 +20,18 @@ export default function ProjectsSection({ projects }) {
         {projects.map((project) => (
           <Link key={project.id} href={`/projects/${project.slug}`}>
             <div className="cursor-pointer">
-              <div className="aspect-4/2 bg-neutral-200 rounded-xl"></div>
+              <div className="aspect-4/2 rounded-xl overflow-hidden bg-neutral-200 relative">
+                {project.image_url ? (
+                  <Image
+                    src={project.image_url}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition duration-500 hover:scale-105"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-neutral-200"></div>
+                )}
+              </div>
 
               <h3 className="mt-6 text-lg font-medium">{project.title}</h3>
 
