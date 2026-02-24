@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function ProjectsSection() {
+export default function ProjectsSection({ projects }) {
   return (
     <section className="py-14">
       {/* Header Row */}
@@ -15,29 +15,18 @@ export default function ProjectsSection() {
         </Link>
       </div>
 
-      {/* Project Grid */}
       <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* Project Card */}
-        <Link href="/projects/project-pertama-saya">
-          <div className="cursor-pointer">
-            <div className="aspect-4/3 bg-neutral-200 rounded-xl"></div>
+        {projects.map((project) => (
+          <Link key={project.id} href={`/projects/${project.slug}`}>
+            <div className="cursor-pointer">
+              <div className="aspect-4/2 bg-neutral-200 rounded-xl"></div>
 
-            <h3 className="mt-6 text-lg font-medium">Project pertama saya</h3>
+              <h3 className="mt-6 text-lg font-medium">{project.title}</h3>
 
-            <p className="mt-2 text-neutral-600">Lorem ipsum description.</p>
-          </div>
-        </Link>
-
-        {/* Project Card */}
-        <div>
-          <div className="aspect-4/3 bg-neutral-200 rounded-xl"></div>
-
-          <h3 className="mt-6 text-lg font-medium">Motion Primitives</h3>
-
-          <p className="mt-2 text-neutral-600">
-            UI kit to make beautiful, animated interfaces.
-          </p>
-        </div>
+              <p className="mt-2 text-neutral-600">{project.description}</p>
+            </div>
+          </Link>
+        ))}
       </div>
     </section>
   );

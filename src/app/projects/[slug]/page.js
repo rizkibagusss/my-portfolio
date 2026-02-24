@@ -1,15 +1,26 @@
+import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 
-export default function ProjectDetail({ params }) {
-  const { slug } = params;
+export default async function ProjectDetail({ params }) {
+  const { slug } = await params;
 
-  // Format slug safely
-  const formattedTitle = slug ? slug.replaceAll("-", " ") : "";
+  const { data: project, error } = await supabase
+    .from("projects")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+
+  if (error) {
+    console.error(error);
+  }
+
+  if (!project) {
+    return <div className="p-10">Project not found.</div>;
+  }
 
   return (
-    <main className="min-h-screen bg-white text-neutral-900">
-      <div className="max-w-4xl mx-auto px-6 py-24">
-        {/* Back Button */}
+    <main className="min-h-screen">
+      <div className="max-w-3xl mx-auto px-6 py-24">
         <Link
           href="/projects"
           className="text-sm text-neutral-500 hover:text-black transition"
@@ -17,23 +28,12 @@ export default function ProjectDetail({ params }) {
           ← Back to projects
         </Link>
 
-        {/* Title */}
-        <h1 className="mt-6 text-3xl font-medium capitalize">
-          {formattedTitle}
-        </h1>
+        <h1 className="mt-6 text-3xl font-medium">{project.title}</h1>
 
-        {/* Short Description */}
-        <p className="mt-4 text-neutral-600">
-          This is the project detail page.
-        </p>
+        <p className="mt-4 text-neutral-600">{project.description}</p>
 
-        {/* Image Placeholder */}
-        <div className="mt-10 aspect-video bg-neutral-200 rounded-xl"></div>
-
-        {/* Content */}
         <div className="mt-10 text-neutral-700 leading-relaxed space-y-6">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <p>This content will later come from Supabase.</p>
+          <p>{project.content}</p>
         </div>
       </div>
     </main>

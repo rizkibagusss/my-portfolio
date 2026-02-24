@@ -22,23 +22,11 @@ export default function ConnectSection() {
 
         <a
           href="#"
-          className="px-4 py-2 rounded-full bg-neutral-100 text-sm hover:bg-neutral-200 transition"
+          className="group relative px-4 py-2 rounded-full border border-neutral-200 text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-neutral-400"
         >
-          Twitter ↗
-        </a>
-
-        <a
-          href="#"
-          className="px-4 py-2 rounded-full bg-neutral-100 text-sm hover:bg-neutral-200 transition"
-        >
-          LinkedIn ↗
-        </a>
-
-        <a
-          href="#"
-          className="px-4 py-2 rounded-full bg-neutral-100 text-sm hover:bg-neutral-200 transition"
-        >
-          Instagram ↗
+          <span className="relative z-10 transition-colors duration-300 group-hover:text-black">
+            LinkedIn ↗
+          </span>
         </a>
       </div>
     </section>

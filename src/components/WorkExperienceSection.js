@@ -7,7 +7,7 @@ export default function WorkExperienceSection() {
         {/* Card */}
         <div className="border border-neutral-200 rounded-2xl p-6 flex justify-between items-start">
           <div>
-            <h3 className="font-medium">IT Infrastructur and Operational</h3>
+            <h3 className="font-medium">IT Infrastructure and Operational</h3>
             <p className="mt-1 text-neutral-500">PT Lion Mentari Airlines</p>
           </div>
 
