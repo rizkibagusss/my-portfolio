@@ -26,6 +26,8 @@ export default function ProjectsSection({ projects }) {
                     src={project.image_url}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="eager"
                     className="object-cover transition duration-500 hover:scale-105"
                   />
                 ) : (
