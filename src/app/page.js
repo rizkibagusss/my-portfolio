@@ -1,7 +1,6 @@
 import { supabase } from "@/lib/supabase";
 import BlogSection from "@/components/BlogSection";
 import ConnectSection from "@/components/ConnectSection";
-import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import WorkExperienceSection from "@/components/WorkExperienceSection";
@@ -30,7 +29,7 @@ export default async function Home() {
         <WorkExperienceSection />
         <BlogSection posts={posts || []} />
         <ConnectSection />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </main>
   );
