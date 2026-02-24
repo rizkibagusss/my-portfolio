@@ -13,7 +13,7 @@ export default async function ProjectsPage() {
   }
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white text-neutral-900">
       <div className="max-w-3xl mx-auto px-6 py-24">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-medium">All Projects</h1>

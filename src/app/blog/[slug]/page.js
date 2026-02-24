@@ -1,9 +1,22 @@
+import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 
-export default function BlogDetail({ params }) {
-  const { slug } = params;
+export default async function BlogDetail({ params }) {
+  const { slug } = await params;
 
-  const formattedTitle = slug ? slug.replaceAll("-", " ") : "";
+  const { data: post, error } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+
+  if (error) {
+    console.error(error);
+  }
+
+  if (!post) {
+    return <div className="p-10">Post not found.</div>;
+  }
 
   return (
     <main className="min-h-screen bg-white text-neutral-900">
@@ -15,17 +28,12 @@ export default function BlogDetail({ params }) {
           ← Back to blog
         </Link>
 
-        <h1 className="mt-6 text-3xl font-medium capitalize">
-          {formattedTitle}
-        </h1>
+        <h1 className="mt-6 text-3xl font-medium">{post.title}</h1>
 
-        <p className="mt-4 text-neutral-600">
-          This is the full blog explanation page.
-        </p>
+        <p className="mt-4 text-neutral-600">{post.excerpt}</p>
 
-        <div className="mt-10 text-neutral-700 leading-relaxed space-y-6">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <p>Here you will later display full blog content from Supabase.</p>
+        <div className="mt-10 leading-relaxed text-neutral-700 space-y-6">
+          <p>{post.content}</p>
         </div>
       </div>
     </main>

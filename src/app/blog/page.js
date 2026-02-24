@@ -1,44 +1,43 @@
+import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const { data: posts, error } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("published", true)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error(error);
+  }
+
   return (
     <main className="min-h-screen bg-white text-neutral-900">
       <div className="max-w-3xl mx-auto px-6 py-24">
-        {/* Back to Home */}
-        <Link
-          href="/"
-          className="text-sm text-neutral-500 hover:text-black transition"
-        >
-          ← Back to home
-        </Link>
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-medium">All Blog Posts</h1>
 
-        <h1 className="mt-6 text-2xl font-medium">All Blog Posts</h1>
+          <Link
+            href="/"
+            className="text-sm text-neutral-500 hover:text-black transition"
+          >
+            ← Back Home
+          </Link>
+        </div>
 
-        <div className="mt-12 space-y-12">
-          <div>
-            <Link href="/blog/exploring-design-ai">
-              <h2 className="text-lg font-medium hover:underline">
-                Exploring the Intersection of Design, AI, and Design Engineering
-              </h2>
+        <div className="mt-12">
+          {posts?.map((post) => (
+            <Link
+              key={post.id}
+              href={`/blog/${post.slug}`}
+              className="block mb-12"
+            >
+              <h2 className="text-xl font-medium">{post.title}</h2>
+
+              <p className="mt-3 text-neutral-600">{post.excerpt}</p>
             </Link>
-
-            <p className="mt-2 text-neutral-500">
-              How AI is changing the way we design
-            </p>
-          </div>
-
-          <div>
-            <Link href="/blog/why-i-left-my-job">
-              <h2 className="text-lg font-medium hover:underline">
-                Why I left my job to start my own company
-              </h2>
-            </Link>
-
-            <p className="mt-2 text-neutral-500">
-              A deep dive into my decision to leave my job and start my own
-              company
-            </p>
-          </div>
+          ))}
         </div>
       </div>
     </main>
