@@ -1,6 +1,29 @@
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 
+// 🔥 Dynamic SEO
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+
+  const { data } = await supabase
+    .from("posts")
+    .select("title, excerpt")
+    .eq("slug", slug)
+    .single();
+
+  if (!data) {
+    return {
+      title: "Post Not Found",
+    };
+  }
+
+  return {
+    title: data.title,
+    description: data.excerpt,
+  };
+}
+
+// 🔥 Page
 export default async function BlogDetail({ params }) {
   const { slug } = await params;
 
