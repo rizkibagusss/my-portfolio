@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import AdminPosts from "@/components/AdminPosts";
+import Link from "next/link";
 
 export default function AdminPage() {
   const router = useRouter();
@@ -49,11 +50,16 @@ export default function AdminPage() {
         </div>
 
         <p className="mt-6 text-neutral-600">Welcome, {user.email}</p>
-        <div className="mt-12">
+        <div className="flex items-center justify-between mt-12 mb-5">
           <h2 className="text-lg font-medium mb-6">Your Blog Posts</h2>
-
-          <AdminPosts />
+          <Link
+            href="/admin/posts/new"
+            className="text-sm bg-black text-white px-4 py-2 rounded-md hover:opacity-80 transition"
+          >
+            + New Post
+          </Link>
         </div>
+        <AdminPosts />
       </div>
     </main>
   );

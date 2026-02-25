@@ -22,6 +22,17 @@ export default function AdminPosts() {
     fetchPosts();
   }, []);
 
+  const handleDelete = async (id) => {
+    const confirmDelete = confirm("Are you sure you want to delete this post?");
+    if (!confirmDelete) return;
+
+    const { error } = await supabase.from("posts").delete().eq("id", id);
+
+    if (!error) {
+      setPosts(posts.filter((post) => post.id !== id));
+    }
+  };
+
   return (
     <div className="space-y-6">
       {posts.map((post) => (
@@ -34,12 +45,28 @@ export default function AdminPosts() {
               </p>
             </div>
 
-            <Link
-              href={`/blog/${post.slug}`}
-              className="text-sm text-blue-500 hover:underline"
-            >
-              View
-            </Link>
+            <div className="flex gap-4 text-sm ">
+              <Link
+                href={`/blog/${post.slug}`}
+                className="text-blue-500 hover:underline"
+              >
+                View
+              </Link>
+
+              <Link
+                href={`/admin/posts/${post.id}/edit`}
+                className="text-neutral-500 hover:underline"
+              >
+                Edit
+              </Link>
+
+              <button
+                onClick={() => handleDelete(post.id)}
+                className="text-red-500 hover:underline"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </div>
       ))}
