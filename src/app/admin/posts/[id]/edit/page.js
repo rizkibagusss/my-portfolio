@@ -1,115 +1,15 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import { redirect } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import { useRouter, useParams } from "next/navigation";
+import EditPostForm from "./EditPostForm";
 
-export default function EditPostPage() {
-  const router = useRouter();
-  const params = useParams();
+export default async function EditPostPage() {
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
-  const [title, setTitle] = useState("");
-  const [slug, setSlug] = useState("");
-  const [excerpt, setExcerpt] = useState("");
-  const [content, setContent] = useState("");
-  const [published, setPublished] = useState(false);
-  const [loading, setLoading] = useState(true);
+  if (!session) {
+    redirect("/admin/login");
+  }
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      const { data, error } = await supabase
-        .from("posts")
-        .select("*")
-        .eq("id", params.id)
-        .single();
-
-      if (!error && data) {
-        setTitle(data.title);
-        setSlug(data.slug);
-        setExcerpt(data.excerpt);
-        setContent(data.content || "");
-        setPublished(data.published);
-      }
-
-      setLoading(false);
-    };
-
-    fetchPost();
-  }, [params.id]);
-
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-
-    const { error } = await supabase
-      .from("posts")
-      .update({
-        title,
-        slug,
-        excerpt,
-        content,
-        published,
-      })
-      .eq("id", params.id);
-
-    if (!error) {
-      router.push("/admin");
-    }
-  };
-
-  if (loading) return null;
-
-  return (
-    <main className="min-h-screen bg-white text-neutral-900">
-      <div className="max-w-3xl mx-auto px-6 py-24">
-        <h1 className="text-2xl font-medium mb-8">Edit Post</h1>
-
-        <form onSubmit={handleUpdate} className="space-y-6">
-          <input
-            type="text"
-            className="w-full border p-3 rounded-md"
-            value={title}
-            onChange={(e) => {
-              const value = e.target.value;
-              setTitle(value);
-              setSlug(generateSlug(value));
-            }}
-          />
-
-          <input
-            type="text"
-            className="w-full border p-3 rounded-md"
-            value={slug}
-            onChange={(e) => setSlug(e.target.value)}
-          />
-
-          <textarea
-            className="w-full border p-3 rounded-md"
-            rows="3"
-            value={excerpt}
-            onChange={(e) => setExcerpt(e.target.value)}
-          />
-
-          <textarea
-            className="w-full border p-3 rounded-md"
-            rows="8"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={published}
-              onChange={(e) => setPublished(e.target.checked)}
-            />
-            Published
-          </label>
-
-          <button className="bg-black text-white px-6 py-3 rounded-md">
-            Update Post
-          </button>
-        </form>
-      </div>
-    </main>
-  );
+  return <EditPostForm />;
 }
