@@ -1,56 +1,56 @@
-Live Website:
-👉 https://rizkibagus.my.id
+# 🚀 Personal Portfolio & Blog
 
-📌 Overview
+A high-performance personal portfolio and dynamic blog system built with the latest web technologies.
 
-This is my personal portfolio website built using:
+**Live Website:** [rizkibagus.my.id](https://rizkibagus.my.id)
 
-Next.js (App Router)
-Supabase (Database + Authentication + RLS)
-Tailwind CSS v4
-Vercel (Deployment)
+---
 
-The project includes:
-Dynamic blog system
-CRUD functionality
-Role-based security using Supabase RLS
-Dynamic SEO metadata
-Production deployment with custom domain
+## 📌 Overview
 
-✨ Features
-Public Side
-View blog posts
-View projects
-Dynamic SEO metadata
-Responsive minimalist UI
-Admin Side
-Login authentication
-Create post
-Edit post
-Delete post
-Secure database via RLS
+This project is my personal digital space where I showcase my journey
 
-🔒 Security
+- **Framework:** Next.js (App Router)
+- **Styling:** Tailwind CSS v4
+- **Database & Auth:** Supabase
+- **Deployment:** Vercel
 
-This project uses Supabase Row Level Security (RLS):
-Only the admin UUID can insert/update/delete
-Public users can only read published posts
-Admin routes protected via session checks
+---
 
-📂 Project Structure (Simplified)
+## ✨ Features
+
+### 🌐 Public Side
+
+- **Dynamic Blog:** Read my latest technical insights and "First Commit" stories.
+- **Project Showcase:** A gallery of my work.
+- **SEO Optimized:** Dynamic metadata for better search engine visibility.
+- **Responsive Design:** Minimalist UI that looks great on mobile and desktop.
+
+---
+
+## 🔒 Security
+
+Security is a top priority, especially given my background in IT operations:
+
+- **Supabase Row Level Security (RLS):** Ensures that only the authorized Admin UUID can modify data.
+- **Read-Only Access:** Public users are strictly limited to read-only permissions for published content.
+- **Environment Safety:** All API keys and sensitive configurations are managed through Vercel environment variables.
+
+---
+
+## 📂 Project Structure
+
+```text
 src/
-├── app/
-│ ├── blog/
-│ ├── projects/
-│ ├── admin/
-│
-├── components/
-├── lib/
-│ └── supabase.js
-⚙️ Environment Variables
+├── app/              # Next.js App Router (blog, projects, admin)
+├── components/       # Reusable UI components
+├── lib/              # Configuration (Supabase client, etc.)
+├── styles/           # Tailwind CSS v4 configurations
+└── types/            # TypeScript definitions
+
 
 📬 Contact
-
-If you’d like to collaborate:
+I'm always open to collaborations or technical discussions!
 Email: rizkibagusariyanto@gmail.com
-Website: https://rizkibagus.my.id
+
+```
