@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Live Website:
+👉 https://rizkibagus.my.id
 
-## Getting Started
+📌 Overview
 
-First, run the development server:
+This is my personal portfolio website built using:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Next.js (App Router)
+Supabase (Database + Authentication + RLS)
+Tailwind CSS v4
+Vercel (Deployment)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The project includes:
+Dynamic blog system
+CRUD functionality
+Role-based security using Supabase RLS
+Dynamic SEO metadata
+Production deployment with custom domain
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+✨ Features
+Public Side
+View blog posts
+View projects
+Dynamic SEO metadata
+Responsive minimalist UI
+Admin Side
+Login authentication
+Create post
+Edit post
+Delete post
+Secure database via RLS
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🔒 Security
 
-## Learn More
+This project uses Supabase Row Level Security (RLS):
+Only the admin UUID can insert/update/delete
+Public users can only read published posts
+Admin routes protected via session checks
 
-To learn more about Next.js, take a look at the following resources:
+📂 Project Structure (Simplified)
+src/
+├── app/
+│ ├── blog/
+│ ├── projects/
+│ ├── admin/
+│
+├── components/
+├── lib/
+│ └── supabase.js
+⚙️ Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📬 Contact
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If you’d like to collaborate:
+Email: rizkibagusariyanto@gmail.com
+Website: https://rizkibagus.my.id

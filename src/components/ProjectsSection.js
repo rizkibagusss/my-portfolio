@@ -20,7 +20,7 @@ export default function ProjectsSection({ projects }) {
         {projects.map((project) => (
           <Link key={project.id} href={`/projects/${project.slug}`}>
             <div className="cursor-pointer">
-              <div className="aspect-4/2 rounded-xl overflow-hidden bg-neutral-200 relative shadow">
+              <div className="aspect-4/2 rounded-xl overflow-hidden bg-neutral-200 relative shadow-md">
                 {project.image_url ? (
                   <Image
                     src={project.image_url}
