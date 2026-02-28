@@ -1,18 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 
 export default function NewPostForm() {
   const router = useRouter();
 
+  const [checkingSession, setCheckingSession] = useState(true);
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [excerpt, setExcerpt] = useState("");
   const [content, setContent] = useState("");
   const [published, setPublished] = useState(true);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const checkSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (!session) {
+        router.push("/admin/login");
+      } else {
+        setCheckingSession(false);
+      }
+    };
+
+    checkSession();
+  }, [router]);
 
   const generateSlug = (text) => {
     return text
@@ -42,6 +59,8 @@ export default function NewPostForm() {
 
     setLoading(false);
   };
+
+  if (checkingSession) return null;
 
   return (
     <main className="min-h-screen bg-white text-neutral-900">
