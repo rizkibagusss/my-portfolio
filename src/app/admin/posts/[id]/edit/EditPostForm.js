@@ -8,6 +8,7 @@ export default function EditPostForm() {
   const router = useRouter();
   const params = useParams();
 
+  const [checkingSession, setCheckingSession] = useState(true);
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [excerpt, setExcerpt] = useState("");
@@ -16,6 +17,24 @@ export default function EditPostForm() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const checkSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      if (!session) {
+        router.push("/admin/login");
+      } else {
+        setCheckingSession(false);
+      }
+    };
+
+    checkSession();
+  }, [router]);
+
+  useEffect(() => {
+    if (checkingSession) return;
+
     const fetchPost = async () => {
       const { data } = await supabase
         .from("posts")
@@ -35,7 +54,7 @@ export default function EditPostForm() {
     };
 
     fetchPost();
-  }, [params.id]);
+  }, [params.id, checkingSession]);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -54,7 +73,7 @@ export default function EditPostForm() {
     router.push("/admin");
   };
 
-  if (loading) return null;
+  if (loading || checkingSession) return null;
 
   return (
     <main className="min-h-screen bg-white text-neutral-900">
