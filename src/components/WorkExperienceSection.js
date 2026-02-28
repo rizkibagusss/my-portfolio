@@ -11,7 +11,7 @@ export default function WorkExperienceSection() {
             <p className="mt-1 text-neutral-500">PT Lion Mentari Airlines</p>
           </div>
 
-          <span className="text-neutral-500">2025 - Present</span>
+          <span className="text-neutral-500">2025 - Now</span>
         </div>
 
         {/* Card */}
